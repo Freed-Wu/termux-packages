@@ -3,7 +3,7 @@ TERMUX_PKG_DESCRIPTION="Set of products that use OS-level virtualization to deli
 TERMUX_PKG_LICENSE="Apache-2.0"
 TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION=1:24.0.6
-TERMUX_PKG_REVISION=2
+TERMUX_PKG_REVISION=3
 LIBNETWORK_COMMIT=67e0588f1ddfaf2faf4c8cae8b7ea2876434d91c
 DOCKER_GITCOMMIT=ed223bc
 TERMUX_PKG_SRCURL=(https://github.com/moby/moby/archive/v${TERMUX_PKG_VERSION:2}.tar.gz
@@ -101,9 +101,9 @@ termux_step_make() {
 	export VERSION=v${TERMUX_PKG_VERSION}-ce
 	export DISABLE_WARN_OUTSIDE_CONTAINER=1
 	export LDFLAGS="-L ${TERMUX_PREFIX}/lib -r ${TERMUX_PREFIX}/lib"
-	make -j ${TERMUX_MAKE_PROCESSES} dynbinary
+	make -j ${TERMUX_PKG_MAKE_PROCESSES} dynbinary
 	unset GOOS GOARCH CGO_LDFLAGS CC CXX CFLAGS CXXFLAGS LDFLAGS
-	make -j ${TERMUX_MAKE_PROCESSES} manpages
+	make -j ${TERMUX_PKG_MAKE_PROCESSES} manpages
 	)
 	echo " Done!"
 }
